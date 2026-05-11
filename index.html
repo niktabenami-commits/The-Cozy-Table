@@ -1,0 +1,1669 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Cozy Table by Kâpé Tayo | Houston's First Filipino Coffee Shop</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600&family=Jost:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --esp:    #160C07;
+      --esp-md: #1E1008;
+      --esp-lt: #2A1208;
+      --amb:    #CC8030;
+      --amb-lt: #DFA058;
+      --amb-dk: #A86020;
+      --crm:    #F5EAD0;
+      --crm-65: rgba(245,234,208,0.65);
+      --crm-40: rgba(245,234,208,0.40);
+      --crm-22: rgba(245,234,208,0.22);
+      --crm-10: rgba(245,234,208,0.10);
+      --amb-12: rgba(204,128,48,0.12);
+      --amb-20: rgba(204,128,48,0.20);
+      --amb-35: rgba(204,128,48,0.35);
+    }
+    html { scroll-behavior: smooth; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background-color: var(--esp);
+      color: var(--crm);
+      font-family: 'Jost', sans-serif;
+      overflow-x: hidden;
+    }
+    h1, h2, h3, h4 {
+      font-family: 'Cormorant Garamond', serif;
+      letter-spacing: -0.02em;
+      line-height: 1.05;
+    }
+
+    /* ── NOISE TEXTURE ── */
+    .noise::after {
+      content: '';
+      position: absolute; inset: 0; pointer-events: none; z-index: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.78' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      mix-blend-mode: overlay;
+    }
+
+    /* ── TYPOGRAPHY UTILS ── */
+    .section-label {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.66rem; font-weight: 700;
+      letter-spacing: 0.32em; text-transform: uppercase;
+      color: var(--amb); display: block;
+    }
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.4rem, 5vw, 4rem);
+      font-weight: 500; color: var(--crm);
+      letter-spacing: -0.025em; line-height: 1.05;
+    }
+    .accent-bar {
+      width: 44px; height: 2px;
+      background: linear-gradient(90deg, var(--amb), transparent);
+    }
+
+    /* ── NAV ── */
+    #navbar {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      transition: background 0.4s ease, box-shadow 0.4s ease;
+    }
+    #navbar.scrolled {
+      background: rgba(22,12,7,0.96);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      box-shadow: 0 1px 0 rgba(204,128,48,0.14), 0 12px 40px rgba(0,0,0,0.45);
+    }
+    .nav-wrap {
+      max-width: 1280px; margin: 0 auto;
+      padding: 0 2rem;
+      height: 76px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-logo { text-decoration: none; }
+    .nav-logo-main {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem; font-weight: 600;
+      color: var(--crm); display: block; line-height: 1.15;
+    }
+    .nav-logo-sub {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.56rem; font-weight: 700;
+      letter-spacing: 0.28em; text-transform: uppercase;
+      color: var(--amb); display: block;
+    }
+    .nav-links {
+      display: flex; align-items: center; gap: 2.5rem;
+    }
+    .nav-link {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.76rem; font-weight: 500;
+      letter-spacing: 0.13em; text-transform: uppercase;
+      color: rgba(245,234,208,0.58); text-decoration: none;
+      position: relative;
+      transition: color 0.25s ease;
+    }
+    .nav-link::after {
+      content: ''; position: absolute; bottom: -4px; left: 0;
+      width: 0; height: 1px; background: var(--amb);
+      transition: width 0.3s cubic-bezier(0.16,1,0.3,1);
+    }
+    .nav-link:hover { color: var(--crm); }
+    .nav-link:hover::after { width: 100%; }
+    .nav-link:focus-visible { outline: 2px solid var(--amb); outline-offset: 3px; border-radius: 2px; }
+    .nav-cta-btn {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.72rem; font-weight: 700;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--esp); background: var(--amb);
+      padding: 0.55rem 1.5rem; border-radius: 2px;
+      text-decoration: none;
+      box-shadow: 0 2px 14px rgba(204,128,48,0.38);
+      transition: background 0.22s ease, transform 0.22s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.22s ease;
+    }
+    .nav-cta-btn:hover {
+      background: var(--amb-lt);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(204,128,48,0.5);
+    }
+    .nav-cta-btn:active { transform: translateY(0); }
+    .nav-cta-btn:focus-visible { outline: 2px solid var(--crm); outline-offset: 3px; }
+
+    /* Hamburger */
+    .hamburger {
+      display: none; flex-direction: column; gap: 5px;
+      background: none; border: none; cursor: pointer; padding: 4px;
+    }
+    .hamburger span {
+      display: block; width: 22px; height: 1.5px; background: var(--crm);
+      transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+    /* Mobile overlay */
+    #mob-overlay {
+      position: fixed; inset: 0; z-index: 199;
+      background: rgba(22,12,7,0.98);
+      backdrop-filter: blur(28px);
+      display: flex; flex-direction: column;
+      justify-content: center; align-items: center; gap: 2.5rem;
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.35s ease;
+    }
+    #mob-overlay.open { opacity: 1; pointer-events: all; }
+    .mob-link {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.5rem, 10vw, 3.5rem);
+      font-weight: 300; letter-spacing: -0.02em;
+      color: rgba(245,234,208,0.7); text-decoration: none;
+      transition: color 0.2s ease, transform 0.2s ease;
+    }
+    .mob-link:hover { color: var(--amb); transform: translateX(6px); }
+    .mob-divider {
+      width: 1px; height: 32px; background: rgba(204,128,48,0.3);
+    }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      display: flex; align-items: center; justify-content: center;
+      position: relative; overflow: hidden;
+      background: var(--esp);
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 85% 65% at 12% 32%, rgba(204,128,48,0.12) 0%, transparent 55%),
+        radial-gradient(ellipse 65% 85% at 88% 70%, rgba(168,76,40,0.09) 0%, transparent 55%),
+        radial-gradient(ellipse 70% 55% at 50% 115%, rgba(42,18,8,0.98) 0%, transparent 60%);
+    }
+    .hero-noise-layer {
+      position: absolute; inset: 0; pointer-events: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.74' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23n)' opacity='0.032'/%3E%3C/svg%3E");
+    }
+    .hero-ring {
+      position: absolute; border-radius: 50%; pointer-events: none;
+      border: 1px solid rgba(204,128,48,0.06);
+    }
+    .hero-content {
+      position: relative; z-index: 2;
+      text-align: center; padding: 0 1.5rem;
+      max-width: 950px; margin: 0 auto;
+    }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 0.85rem;
+      font-family: 'Jost', sans-serif;
+      font-size: 0.66rem; font-weight: 700;
+      letter-spacing: 0.32em; text-transform: uppercase;
+      color: var(--amb); margin-bottom: 2.25rem;
+    }
+    .hero-eyebrow::before, .hero-eyebrow::after {
+      content: ''; display: block;
+      width: 44px; height: 1px; background: var(--amb); opacity: 0.55;
+    }
+    .hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(4.5rem, 13vw, 10rem);
+      font-weight: 300; letter-spacing: -0.03em; line-height: 0.88;
+      color: var(--crm); margin-bottom: 0.6rem;
+    }
+    .hero-title em {
+      font-style: italic; font-weight: 500; color: var(--amb);
+    }
+    .hero-byline {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1rem, 2.5vw, 1.45rem);
+      font-style: italic; font-weight: 300;
+      color: rgba(245,234,208,0.42); letter-spacing: 0.07em;
+      margin-bottom: 1.75rem;
+    }
+    .hero-tagline {
+      font-size: 0.86rem; font-weight: 300;
+      color: rgba(245,234,208,0.38); line-height: 1.85;
+      letter-spacing: 0.02em; margin-bottom: 3.25rem;
+    }
+    .hero-actions {
+      display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center;
+    }
+
+    /* Shared buttons */
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: var(--amb); color: var(--esp);
+      font-family: 'Jost', sans-serif; font-weight: 700;
+      font-size: 0.76rem; letter-spacing: 0.14em; text-transform: uppercase;
+      padding: 1rem 2.4rem; border-radius: 2px; text-decoration: none;
+      box-shadow: 0 4px 28px rgba(204,128,48,0.42), 0 1px 0 rgba(255,255,255,0.1) inset;
+      transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.25s ease;
+    }
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 40px rgba(204,128,48,0.55), 0 1px 0 rgba(255,255,255,0.15) inset;
+    }
+    .btn-primary:active { transform: translateY(0); }
+    .btn-primary:focus-visible { outline: 2px solid var(--crm); outline-offset: 3px; }
+
+    .btn-ghost {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      border: 1px solid rgba(204,128,48,0.32); color: rgba(245,234,208,0.68);
+      font-family: 'Jost', sans-serif; font-weight: 500;
+      font-size: 0.76rem; letter-spacing: 0.14em; text-transform: uppercase;
+      padding: 1rem 2.4rem; border-radius: 2px; text-decoration: none;
+      transition: border-color 0.25s ease, color 0.25s ease, background 0.25s ease;
+    }
+    .btn-ghost:hover {
+      border-color: var(--amb); color: var(--crm);
+      background: rgba(204,128,48,0.06);
+    }
+    .btn-ghost:focus-visible { outline: 2px solid var(--amb); outline-offset: 3px; }
+
+    .scroll-nudge {
+      position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%);
+      display: flex; flex-direction: column; align-items: center; gap: 0.45rem;
+      color: rgba(245,234,208,0.22);
+      font-family: 'Jost', sans-serif; font-size: 0.58rem;
+      letter-spacing: 0.28em; text-transform: uppercase;
+      animation: scrollBounce 2.4s ease-in-out infinite;
+    }
+    @keyframes scrollBounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); opacity: 0.22; }
+      50% { transform: translateX(-50%) translateY(7px); opacity: 0.38; }
+    }
+
+    /* ── MARQUEE ── */
+    .marquee-bar {
+      background: var(--amb); overflow: hidden; padding: 0.7rem 0;
+    }
+    .marquee-track {
+      display: flex; width: max-content;
+      animation: marqueeScroll 30s linear infinite;
+    }
+    .marquee-item {
+      display: flex; align-items: center; gap: 2.5rem;
+      font-family: 'Jost', sans-serif;
+      font-size: 0.64rem; font-weight: 700;
+      letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--esp); white-space: nowrap; padding: 0 2.5rem;
+    }
+    .marquee-sep { width: 4px; height: 4px; border-radius: 50%; background: rgba(22,12,7,0.4); flex-shrink: 0; }
+    @keyframes marqueeScroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* ── SECTION SEPARATOR ── */
+    .sep {
+      position: relative;
+    }
+    .sep::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(to right, transparent, rgba(204,128,48,0.28), transparent);
+    }
+
+    /* ── ABOUT ── */
+    #about {
+      background: var(--esp-md);
+      padding: 9rem 2rem;
+    }
+    .about-inner {
+      max-width: 1200px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 7rem; align-items: start;
+    }
+    .about-quote {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.35rem, 2.5vw, 1.85rem);
+      font-style: italic; font-weight: 300;
+      color: rgba(245,234,208,0.72); line-height: 1.5;
+      border-left: 2px solid var(--amb);
+      padding-left: 1.6rem; margin: 2.25rem 0;
+    }
+    .about-body {
+      font-size: 0.95rem; font-weight: 300;
+      color: rgba(245,234,208,0.58); line-height: 1.9;
+    }
+    .about-body strong { color: var(--crm); font-weight: 600; }
+    .about-body em { color: rgba(245,234,208,0.82); font-style: italic; }
+
+    .about-stat-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem;
+    }
+    .stat-card {
+      background: rgba(26,14,7,0.65);
+      border: 1px solid rgba(204,128,48,0.1);
+      border-radius: 12px; padding: 1.6rem;
+      transition: border-color 0.3s ease, transform 0.3s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.3s ease;
+    }
+    .stat-card:hover {
+      border-color: rgba(204,128,48,0.28);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 36px rgba(0,0,0,0.35);
+    }
+    .stat-icon {
+      width: 36px; height: 36px; border-radius: 8px;
+      background: rgba(204,128,48,0.1);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 0.9rem;
+    }
+    .stat-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.05rem; font-weight: 600; color: var(--crm);
+      margin-bottom: 0.3rem;
+    }
+    .stat-desc {
+      font-size: 0.75rem; font-weight: 300;
+      color: rgba(245,234,208,0.42); line-height: 1.6;
+    }
+
+    /* ── FEATURES ── */
+    #features {
+      background: var(--esp);
+      padding: 8rem 2rem;
+    }
+    .features-header {
+      max-width: 1200px; margin: 0 auto 4rem;
+      text-align: center;
+    }
+    .features-grid {
+      max-width: 1200px; margin: 0 auto;
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
+    }
+    .feat-card {
+      position: relative; overflow: hidden;
+      background: rgba(22,14,8,0.8);
+      border: 1px solid rgba(204,128,48,0.1);
+      border-radius: 14px; padding: 2.75rem 2.25rem;
+      transition: border-color 0.3s ease, transform 0.35s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.35s ease;
+    }
+    .feat-card:hover {
+      border-color: rgba(204,128,48,0.32);
+      transform: translateY(-6px);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.45), 0 0 0 1px rgba(204,128,48,0.08) inset;
+    }
+    .feat-card::before {
+      content: ''; position: absolute;
+      top: -60px; right: -60px; width: 180px; height: 180px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(204,128,48,0.07) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .feat-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 5.5rem; font-weight: 300; line-height: 1;
+      color: rgba(204,128,48,0.08); letter-spacing: -0.04em;
+      position: absolute; top: 0.75rem; right: 1.25rem;
+      user-select: none; pointer-events: none;
+    }
+    .feat-icon {
+      width: 48px; height: 48px; border-radius: 10px;
+      background: rgba(204,128,48,0.1);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 1.5rem;
+    }
+    .feat-rule { width: 32px; height: 1px; background: var(--amb); opacity: 0.55; margin: 1.1rem 0; }
+    .feat-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.65rem; font-weight: 600; color: var(--crm);
+      margin-bottom: 0.75rem;
+    }
+    .feat-desc {
+      font-size: 0.83rem; font-weight: 300;
+      color: rgba(245,234,208,0.48); line-height: 1.75;
+    }
+
+    /* ── MENU ── */
+    #menu {
+      background: var(--esp-md);
+      padding: 9rem 2rem;
+    }
+    .menu-hdr {
+      text-align: center; margin-bottom: 4rem;
+    }
+    .menu-deco {
+      display: flex; align-items: center; gap: 1rem;
+      max-width: 220px; margin: 1.5rem auto 0;
+    }
+    .menu-deco::before, .menu-deco::after {
+      content: ''; flex: 1; height: 1px;
+      background: linear-gradient(to right, transparent, rgba(204,128,48,0.38), transparent);
+    }
+    .menu-deco-icon { color: var(--amb); font-size: 0.55rem; }
+
+    /* Tabs */
+    .tabs-bar {
+      display: flex; flex-wrap: wrap; gap: 0.5rem; justify-content: center;
+      margin-bottom: 3rem;
+    }
+    .m-tab {
+      font-family: 'Jost', sans-serif; font-size: 0.7rem; font-weight: 600;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      padding: 0.48rem 1.25rem; border-radius: 100px;
+      border: 1px solid rgba(204,128,48,0.2);
+      color: rgba(245,234,208,0.48); cursor: pointer; background: transparent;
+      transition: border-color 0.22s ease, color 0.22s ease, background 0.22s ease;
+    }
+    .m-tab:hover { border-color: rgba(204,128,48,0.55); color: var(--crm); }
+    .m-tab:focus-visible { outline: 2px solid var(--amb); outline-offset: 2px; }
+    .m-tab.active {
+      background: var(--amb); border-color: var(--amb); color: var(--esp);
+    }
+
+    /* Panel */
+    .menu-panel {
+      max-width: 780px; margin: 0 auto;
+      background: rgba(22,12,7,0.72);
+      border: 1px solid rgba(204,128,48,0.11);
+      border-radius: 16px; padding: 3rem;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 10px 60px rgba(0,0,0,0.55), 0 1px 0 rgba(204,128,48,0.06) inset;
+    }
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; animation: tabIn 0.28s ease; }
+    @keyframes tabIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: none; }
+    }
+    .cat-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem; font-weight: 600; color: var(--amb);
+      padding-bottom: 0.85rem;
+      border-bottom: 1px solid rgba(204,128,48,0.14);
+      margin-bottom: 1.5rem;
+    }
+    .cat-note {
+      font-size: 0.75rem; font-style: italic; color: var(--crm-40);
+      margin-bottom: 1.5rem; margin-top: -0.75rem;
+    }
+    .m-item {
+      display: flex; align-items: baseline; gap: 0.75rem;
+      padding: 0.95rem 0;
+      border-bottom: 1px solid rgba(245,234,208,0.045);
+    }
+    .m-item:last-child { border-bottom: none; }
+    .m-left { flex: 1; min-width: 0; }
+    .m-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.08rem; font-weight: 500; color: var(--crm);
+      display: block; margin-bottom: 0.12rem;
+    }
+    .m-desc {
+      font-size: 0.74rem; font-weight: 300; color: var(--crm-40); line-height: 1.5;
+    }
+    .m-dots { flex: 1; border-bottom: 1px dotted rgba(245,234,208,0.1); min-width: 16px; }
+    .m-price {
+      font-family: 'Jost', sans-serif; font-size: 0.88rem; font-weight: 700;
+      color: var(--amb); white-space: nowrap;
+    }
+    .m-ask {
+      font-family: 'Jost', sans-serif; font-size: 0.74rem; font-weight: 400;
+      color: rgba(245,234,208,0.28); font-style: italic; white-space: nowrap;
+    }
+    .menu-note {
+      text-align: center; margin-top: 2.25rem;
+      font-size: 0.7rem; color: rgba(245,234,208,0.2);
+      font-style: italic; letter-spacing: 0.03em;
+    }
+
+    /* ── ORDER BANNER ── */
+    .order-strip {
+      background: linear-gradient(135deg, var(--amb) 0%, var(--amb-dk) 100%);
+      padding: 5rem 2rem; text-align: center; position: relative; overflow: hidden;
+    }
+    .order-strip::before {
+      content: ''; position: absolute; inset: 0; pointer-events: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.045'/%3E%3C/svg%3E");
+    }
+    .order-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 4.5vw, 3.2rem);
+      font-weight: 500; color: var(--esp);
+      margin-bottom: 0.75rem; position: relative; z-index: 1;
+    }
+    .order-sub {
+      font-size: 0.86rem; color: rgba(22,12,7,0.6);
+      margin-bottom: 2.5rem; position: relative; z-index: 1; letter-spacing: 0.02em;
+    }
+    .btn-dark {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      background: var(--esp); color: var(--amb);
+      font-family: 'Jost', sans-serif; font-weight: 700;
+      font-size: 0.76rem; letter-spacing: 0.14em; text-transform: uppercase;
+      padding: 1rem 2.4rem; border-radius: 2px; text-decoration: none;
+      position: relative; z-index: 1;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.3);
+      transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.25s ease;
+    }
+    .btn-dark:hover { transform: translateY(-3px); box-shadow: 0 10px 36px rgba(0,0,0,0.4); }
+    .btn-dark:active { transform: translateY(0); }
+    .btn-dark:focus-visible { outline: 2px solid var(--esp); outline-offset: 3px; }
+
+    /* ── HOURS & CONTACT ── */
+    #hours {
+      background: var(--esp);
+      padding: 9rem 2rem;
+    }
+    .hours-hdr { text-align: center; margin-bottom: 4rem; }
+    .hours-grid {
+      max-width: 920px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;
+    }
+    .info-card {
+      background: rgba(22,12,7,0.72);
+      border: 1px solid rgba(204,128,48,0.11);
+      border-radius: 16px; padding: 2.75rem;
+      transition: border-color 0.3s ease, transform 0.3s ease;
+    }
+    .info-card:hover { border-color: rgba(204,128,48,0.24); transform: translateY(-3px); }
+    .card-hdr {
+      display: flex; align-items: center; gap: 0.8rem; margin-bottom: 2rem;
+    }
+    .card-icon {
+      width: 38px; height: 38px; border-radius: 50%;
+      background: rgba(204,128,48,0.12);
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .card-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem; font-weight: 600; color: var(--crm);
+    }
+    .hr-row {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 0.65rem 0; border-bottom: 1px solid rgba(245,234,208,0.048);
+    }
+    .hr-row:last-child { border-bottom: none; }
+    .hr-day {
+      font-family: 'Cormorant Garamond', serif; font-size: 1rem; font-weight: 500;
+    }
+    .hr-time { font-family: 'Jost', sans-serif; font-size: 0.82rem; font-weight: 600; color: var(--amb); }
+    .closed-txt { color: rgba(245,234,208,0.22) !important; }
+
+    .c-link {
+      display: flex; align-items: center; gap: 0.8rem;
+      text-decoration: none; color: rgba(245,234,208,0.58);
+      font-size: 0.85rem; font-weight: 300; padding: 0.5rem 0;
+      transition: color 0.22s ease;
+    }
+    .c-link:hover { color: var(--amb); }
+    .c-link:focus-visible { outline: 2px solid var(--amb); outline-offset: 2px; border-radius: 2px; }
+    .c-icon {
+      width: 34px; height: 34px; border-radius: 50%; flex-shrink: 0;
+      background: rgba(204,128,48,0.1);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .btn-block {
+      display: flex; align-items: center; justify-content: center; gap: 0.55rem;
+      background: var(--amb); color: var(--esp);
+      font-family: 'Jost', sans-serif; font-weight: 700;
+      font-size: 0.74rem; letter-spacing: 0.14em; text-transform: uppercase;
+      padding: 0.9rem 1.5rem; border-radius: 2px; text-decoration: none;
+      margin-top: 1.75rem;
+      box-shadow: 0 4px 20px rgba(204,128,48,0.38);
+      transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.25s ease;
+    }
+    .btn-block:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(204,128,48,0.5); }
+    .btn-block:active { transform: translateY(0); }
+    .btn-block:focus-visible { outline: 2px solid var(--crm); outline-offset: 3px; }
+
+    /* Open badge */
+    .open-badge {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      font-family: 'Jost', sans-serif; font-size: 0.64rem; font-weight: 700;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      padding: 0.28rem 0.7rem; border-radius: 100px;
+      margin-left: 0.5rem;
+    }
+    .open-badge.is-open { background: rgba(74,200,100,0.15); color: #4AC864; }
+    .open-badge.is-closed { background: rgba(245,234,208,0.08); color: rgba(245,234,208,0.35); }
+    .badge-dot { width: 5px; height: 5px; border-radius: 50%; background: currentColor; }
+
+    /* ── SOCIAL ── */
+    #social {
+      background: var(--esp-md);
+      padding: 7rem 2rem; text-align: center;
+    }
+    .ig-link {
+      display: inline-flex; align-items: center; gap: 0.75rem;
+      background: rgba(204,128,48,0.09);
+      border: 1px solid rgba(204,128,48,0.22);
+      border-radius: 100px; padding: 0.8rem 2rem;
+      text-decoration: none; color: var(--crm);
+      font-size: 0.85rem; font-weight: 400;
+      transition: background 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
+      margin-top: 1.75rem;
+    }
+    .ig-link:hover { background: rgba(204,128,48,0.16); border-color: rgba(204,128,48,0.45); transform: translateY(-2px); }
+    .ig-link:focus-visible { outline: 2px solid var(--amb); outline-offset: 3px; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #0D0804;
+      border-top: 1px solid rgba(204,128,48,0.1);
+      padding: 5.5rem 2rem 3rem;
+    }
+    .foot-inner { max-width: 1200px; margin: 0 auto; }
+    .foot-grid {
+      display: grid; grid-template-columns: 2.2fr 1fr 1fr; gap: 5rem; margin-bottom: 4.5rem;
+    }
+    .foot-brand { font-family: 'Cormorant Garamond', serif; font-size: 1.25rem; font-weight: 600; color: var(--crm); }
+    .foot-sub { font-family: 'Jost', sans-serif; font-size: 0.54rem; font-weight: 700; letter-spacing: 0.28em; text-transform: uppercase; color: var(--amb); display: block; margin-top: 0.1rem; margin-bottom: 1rem; }
+    .foot-tagline { font-size: 0.8rem; color: rgba(245,234,208,0.32); line-height: 1.85; max-width: 240px; font-weight: 300; }
+    .foot-col-lbl { font-family: 'Jost', sans-serif; font-size: 0.58rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(245,234,208,0.22); display: block; margin-bottom: 1rem; }
+    .foot-links { display: flex; flex-direction: column; gap: 0.6rem; }
+    .foot-link { font-size: 0.82rem; color: rgba(245,234,208,0.48); text-decoration: none; font-weight: 300; transition: color 0.22s ease; }
+    .foot-link:hover { color: var(--amb); }
+    .foot-link:focus-visible { outline: 2px solid var(--amb); outline-offset: 2px; }
+    .foot-bottom {
+      border-top: 1px solid rgba(245,234,208,0.055);
+      padding-top: 2rem;
+      display: flex; flex-wrap: wrap; gap: 1rem;
+      justify-content: space-between; align-items: center;
+    }
+    .foot-copy { font-size: 0.7rem; color: rgba(245,234,208,0.18); font-weight: 300; }
+
+    /* ── SCROLL REVEAL ── */
+    .reveal {
+      opacity: 0; transform: translateY(22px);
+      transition: opacity 0.75s ease, transform 0.75s ease;
+    }
+    .reveal.vis { opacity: 1; transform: none; }
+    .rd1 { transition-delay: 0.07s; }
+    .rd2 { transition-delay: 0.15s; }
+    .rd3 { transition-delay: 0.23s; }
+    .rd4 { transition-delay: 0.31s; }
+    .rd5 { transition-delay: 0.39s; }
+    .rd6 { transition-delay: 0.47s; }
+
+    /* ── FEATURED DISHES GALLERY ── */
+    #dishes {
+      background: var(--esp-lt);
+      padding: 8rem 2rem;
+    }
+    .dishes-header {
+      max-width: 1200px; margin: 0 auto 3.5rem;
+      text-align: center;
+    }
+    .dishes-grid {
+      max-width: 1200px; margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+    .dish-card {
+      border-radius: 14px; overflow: hidden;
+      background: var(--esp);
+      border: 1px solid rgba(204,128,48,0.12);
+      transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1), border-color 0.3s ease, box-shadow 0.35s ease;
+    }
+    .dish-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(204,128,48,0.32);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+    }
+    .dish-photo {
+      width: 100%; height: 210px;
+      background-size: cover; background-position: center;
+      background-color: #2A1208; position: relative;
+    }
+    .dish-photo::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse at center, rgba(204,128,48,0.07) 0%, transparent 65%);
+    }
+    .dish-photo::after {
+      content: ''; position: absolute;
+      bottom: 0; left: 0; right: 0; height: 55%;
+      background: linear-gradient(to top, rgba(22,12,7,0.9), transparent);
+    }
+    .dish-body {
+      padding: 1.2rem 1.4rem 1.45rem;
+      border-top: 1px solid rgba(204,128,48,0.08);
+    }
+    .dish-badge {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.56rem; font-weight: 700;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--amb); margin-bottom: 0.35rem; display: block;
+    }
+    .dish-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.22rem; font-weight: 600; color: var(--crm);
+      line-height: 1.2; margin-bottom: 0.35rem;
+    }
+    .dish-desc {
+      font-size: 0.73rem; font-weight: 300;
+      color: rgba(245,234,208,0.4); line-height: 1.55;
+      margin-bottom: 0.6rem;
+    }
+    .dish-price {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.88rem; font-weight: 700; color: var(--amb);
+    }
+    .dish-new {
+      display: inline-flex; align-items: center;
+      background: rgba(204,128,48,0.16); color: var(--amb-lt);
+      font-family: 'Jost', sans-serif; font-size: 0.54rem; font-weight: 700;
+      letter-spacing: 0.16em; text-transform: uppercase;
+      padding: 0.16rem 0.5rem; border-radius: 100px;
+      margin-left: 0.4rem; vertical-align: middle; position: relative; top: -1px;
+    }
+
+    /* Menu inline tags */
+    .m-tag {
+      display: inline-flex; align-items: center;
+      background: rgba(204,128,48,0.12); color: var(--amb);
+      font-family: 'Jost', sans-serif; font-size: 0.52rem; font-weight: 700;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      padding: 0.14rem 0.48rem; border-radius: 100px;
+      margin-left: 0.4rem; vertical-align: middle; position: relative; top: -1px;
+    }
+    .cat-sub-hdr {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.59rem; font-weight: 700;
+      letter-spacing: 0.22em; text-transform: uppercase;
+      color: rgba(204,128,48,0.5);
+      margin: 1.75rem 0 0.6rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid rgba(204,128,48,0.08);
+    }
+    .cat-sub-hdr:first-of-type { margin-top: 0.5rem; }
+
+    /* Scrollable tabs on small screens */
+    @media (max-width: 640px) {
+      .tabs-bar {
+        flex-wrap: nowrap; overflow-x: auto;
+        justify-content: flex-start; padding-bottom: 0.5rem;
+        -webkit-overflow-scrolling: touch; scrollbar-width: none;
+      }
+      .tabs-bar::-webkit-scrollbar { display: none; }
+      .m-tab { flex-shrink: 0; }
+    }
+    @media (max-width: 960px) {
+      .dishes-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 540px) {
+      .dishes-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ── HERO ENTRANCE ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: none; }
+    }
+    .fade-up { opacity: 0; animation: fadeUp 1s cubic-bezier(0.16,1,0.3,1) forwards; }
+    .du1 { animation-delay: 0.1s; }
+    .du2 { animation-delay: 0.3s; }
+    .du3 { animation-delay: 0.5s; }
+    .du4 { animation-delay: 0.65s; }
+    .du5 { animation-delay: 0.82s; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 960px) {
+      .about-inner { grid-template-columns: 1fr; gap: 3.5rem; }
+      .features-grid { grid-template-columns: 1fr; }
+      .hours-grid { grid-template-columns: 1fr; }
+      .foot-grid { grid-template-columns: 1fr; gap: 3rem; }
+    }
+    @media (max-width: 768px) {
+      .nav-links, .nav-cta-btn { display: none; }
+      .hamburger { display: flex; }
+      #hero { min-height: 100svh; }
+      .menu-panel { padding: 1.75rem 1.5rem; }
+    }
+    @media (max-width: 520px) {
+      .about-stat-grid { grid-template-columns: 1fr; }
+      .hero-title { font-size: clamp(3.5rem, 18vw, 5rem); }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ========================= NAV ========================= -->
+<nav id="navbar">
+  <div class="nav-wrap">
+    <a href="#hero" class="nav-logo" aria-label="The Cozy Table by Kâpé Tayo — home">
+      <span class="nav-logo-main">The Cozy Table</span>
+      <span class="nav-logo-sub">by Kâpé Tayo</span>
+    </a>
+
+    <div class="nav-links" role="list">
+      <a href="#about"  class="nav-link" role="listitem">About</a>
+      <a href="#menu"   class="nav-link" role="listitem">Menu</a>
+      <a href="#hours"  class="nav-link" role="listitem">Hours</a>
+      <a href="#contact" class="nav-link" role="listitem">Contact</a>
+    </div>
+
+    <a href="tel:7137012826" class="nav-cta-btn">(713) 701-2826</a>
+
+    <button class="hamburger" id="hamburger" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mob-overlay">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- ===================== MOBILE OVERLAY ===================== -->
+<div id="mob-overlay" role="dialog" aria-modal="true" aria-label="Navigation menu">
+  <a href="#about"   class="mob-link">About</a>
+  <div class="mob-divider" aria-hidden="true"></div>
+  <a href="#menu"    class="mob-link">Menu</a>
+  <div class="mob-divider" aria-hidden="true"></div>
+  <a href="#hours"   class="mob-link">Hours</a>
+  <div class="mob-divider" aria-hidden="true"></div>
+  <a href="#contact" class="mob-link">Contact</a>
+  <div style="margin-top:1.5rem;">
+    <a href="tel:7137012826" class="btn-primary">Call (713) 701-2826</a>
+  </div>
+</div>
+
+<!-- ========================= HERO ========================= -->
+<section id="hero" class="noise" aria-label="Welcome to The Cozy Table by Kâpé Tayo">
+  <div class="hero-bg" aria-hidden="true"></div>
+  <div class="hero-noise-layer" aria-hidden="true"></div>
+
+  <!-- Decorative rings -->
+  <div class="hero-ring" style="width:280px;height:280px;top:9%;right:6%;" aria-hidden="true"></div>
+  <div class="hero-ring" style="width:400px;height:400px;top:6%;right:3%;opacity:.45;" aria-hidden="true"></div>
+  <div class="hero-ring" style="width:520px;height:520px;top:3%;right:0%;opacity:.2;" aria-hidden="true"></div>
+  <div class="hero-ring" style="width:200px;height:200px;bottom:18%;left:5%;opacity:.6;" aria-hidden="true"></div>
+  <div class="hero-ring" style="width:320px;height:320px;bottom:14%;left:2%;opacity:.3;" aria-hidden="true"></div>
+
+  <div class="hero-content">
+    <div class="hero-eyebrow fade-up du1">Houston's First Filipino Coffee Shop</div>
+
+    <h1 class="hero-title fade-up du2">
+      The Cozy<br>
+      <em>Table</em>
+    </h1>
+
+    <p class="hero-byline fade-up du3">by Kâpé Tayo</p>
+
+    <p class="hero-tagline fade-up du4">
+      Authentic Philippine coffee &amp; Filipino Asian American cuisine<br>
+      <span style="font-size:0.8rem;opacity:0.8;">12012 Wickchester Ln, Suite 110 &middot; Houston, TX &middot; Energy District</span>
+    </p>
+
+    <div class="hero-actions fade-up du5">
+      <a href="#menu" class="btn-primary">
+        Explore Menu
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <a href="#hours" class="btn-ghost">Find Us</a>
+    </div>
+  </div>
+
+  <div class="scroll-nudge" aria-hidden="true">
+    <span>Scroll</span>
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+  </div>
+</section>
+
+<!-- ======================= MARQUEE ======================= -->
+<div class="marquee-bar" aria-hidden="true">
+  <div class="marquee-track" id="marquee-track">
+    <!-- JS will populate -->
+  </div>
+</div>
+
+<!-- ======================== ABOUT ======================== -->
+<section id="about" class="sep">
+  <div class="about-inner">
+
+    <!-- Text column -->
+    <div class="reveal">
+      <span class="section-label" style="margin-bottom:1.1rem;">Our Story</span>
+      <h2 class="section-title">A Taste of Home<br>in Houston</h2>
+      <div class="accent-bar" style="margin-top:1.5rem;margin-bottom:0;"></div>
+
+      <blockquote class="about-quote">
+        "More than just a café — we're a warm corner of the Philippines right here in Houston."
+      </blockquote>
+
+      <p class="about-body" style="margin-bottom:1.2rem;">
+        Welcome to <strong>The Cozy Table by Kâpé Tayo</strong> — Houston's first and only Filipino coffee shop. Founded by <strong>Mary Jane (MJ) and Jeffrey (Jeff)</strong>, our café is built on the belief that food and coffee are the languages of love and community.
+      </p>
+      <p class="about-body">
+        From our rich, aromatic <em>Kape Filipino</em> to hearty silog plates that taste like home-cooked meals, every cup and every dish is made with heart — honoring the flavors of the Philippines while welcoming everyone to our table.
+      </p>
+    </div>
+
+    <!-- Stats column -->
+    <div class="about-stat-grid reveal" style="transition-delay:.2s;">
+      <div class="stat-card reveal rd1">
+        <div class="stat-icon" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#CC8030" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
+        </div>
+        <div class="stat-name">Authentic Filipino Coffee</div>
+        <div class="stat-desc">Philippine coffee traditions brewed fresh every morning</div>
+      </div>
+      <div class="stat-card reveal rd2">
+        <div class="stat-icon" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#CC8030" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+        </div>
+        <div class="stat-name">Silog Plates</div>
+        <div class="stat-desc">Classic Filipino breakfast favorites served all day</div>
+      </div>
+      <div class="stat-card reveal rd3">
+        <div class="stat-icon" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#CC8030" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        </div>
+        <div class="stat-name">Desserts &amp; Shakes</div>
+        <div class="stat-desc">Halo-Halo, tropical shakes &amp; Filipino favorites</div>
+      </div>
+      <div class="stat-card reveal rd4">
+        <div class="stat-icon" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#CC8030" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <div class="stat-name">First in Texas</div>
+        <div class="stat-desc">The original Filipino coffee shop in the Lone Star State</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ====================== FEATURES ======================= -->
+<section id="features" class="sep">
+  <div class="features-header reveal">
+    <span class="section-label" style="margin-bottom:1rem;">Why We're Different</span>
+    <h2 class="section-title">Signature Offerings</h2>
+  </div>
+
+  <div class="features-grid">
+    <div class="feat-card reveal rd1">
+      <span class="feat-num" aria-hidden="true">01</span>
+      <div class="feat-icon" aria-hidden="true">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#CC8030" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
+      </div>
+      <div class="feat-rule" aria-hidden="true"></div>
+      <div class="feat-title">Kape Filipino Coffee</div>
+      <div class="feat-desc">Authentic Philippine coffee culture, from the rich and bold Kape Filipino to MJ's Salted Caramel Latte and cold brew specials. Every cup tells a story of home.</div>
+    </div>
+
+    <div class="feat-card reveal rd2">
+      <span class="feat-num" aria-hidden="true">02</span>
+      <div class="feat-icon" aria-hidden="true">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#CC8030" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="2" x2="8" y2="22"/><path d="M5 2v6a3 3 0 0 0 6 0V2"/><line x1="16" y1="2" x2="16" y2="22"/><path d="M13 6V2h6v4a3 3 0 0 1-6 0z"/></svg>
+      </div>
+      <div class="feat-rule" aria-hidden="true"></div>
+      <div class="feat-title">Filipino Silog Plates</div>
+      <div class="feat-desc">Bangsilog, Tapsilog, Longsilog, and more. Traditional Filipino breakfast plates served with garlic fried rice and egg — comfort food that feels like home.</div>
+    </div>
+
+    <div class="feat-card reveal rd3">
+      <span class="feat-num" aria-hidden="true">03</span>
+      <div class="feat-icon" aria-hidden="true">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#CC8030" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h14l-1.5 8.5A4 4 0 0 1 13.54 16H10.46a4 4 0 0 1-3.96-3.5L5 4z"/><path d="M3 4h18"/><line x1="12" y1="16" x2="12" y2="21"/><line x1="9" y1="21" x2="15" y2="21"/></svg>
+      </div>
+      <div class="feat-rule" aria-hidden="true"></div>
+      <div class="feat-title">Desserts &amp; Shakes</div>
+      <div class="feat-desc">Cool down with fresh tropical shakes — Buko, Mango, Avocado — or indulge in the iconic Filipino Halo-Halo shaved ice dessert, made fresh to order.</div>
+    </div>
+  </div>
+</section>
+
+<!-- =================== FEATURED DISHES =================== -->
+<!-- IMAGES: Save restaurant photos to the images/ folder using these filenames:
+     images/ube-frappe.jpg          — Osmena's Ube Coffee Frappe
+     images/silog-plate.jpg         — Filipino Silog Breakfast Plate
+     images/mj-latte.jpg            — MJ's Salted Caramel Latte
+     images/avocado-salad.jpg       — Grilled Chicken Avocado Salad
+     images/buffalo-wings.jpg       — Hot & Spicy Baked Buffalo Wings
+     images/halo-halo.jpg           — Halo-Halo Dessert                       -->
+<section id="dishes" class="sep">
+  <div class="dishes-header reveal" style="padding-top:8rem;">
+    <span class="section-label" style="margin-bottom:1rem;">From Our Kitchen &amp; Bar</span>
+    <h2 class="section-title">Fan Favorites</h2>
+    <p style="font-size:0.86rem;color:rgba(245,234,208,0.38);margin-top:1rem;font-weight:300;max-width:380px;margin-left:auto;margin-right:auto;line-height:1.75;">Handcrafted with love — from morning coffee to lunch and dessert</p>
+  </div>
+  <div class="dishes-grid" style="padding:0 2rem 8rem;max-width:1200px;margin:2.5rem auto 0;">
+
+    <div class="dish-card reveal rd1">
+      <div class="dish-photo" style="background-image:url('images/ube-frappe.jpg');" role="img" aria-label="Osmena's Ube Coffee Frappe"></div>
+      <div class="dish-body">
+        <span class="dish-badge">Coffee &amp; Drinks</span>
+        <div class="dish-name">Osmena's Ube Coffee Frapp&eacute; <span class="dish-new">New</span></div>
+        <div class="dish-desc">Creamy ube blended with coffee for a uniquely Filipino frappé experience</div>
+        <div class="dish-price">$7.99</div>
+      </div>
+    </div>
+
+    <div class="dish-card reveal rd2">
+      <div class="dish-photo" style="background-image:url('images/silog-plate.jpg');" role="img" aria-label="Filipino Silog Breakfast Plate"></div>
+      <div class="dish-body">
+        <span class="dish-badge">Filipino Breakfast</span>
+        <div class="dish-name">Silog Breakfast Plate</div>
+        <div class="dish-desc">Your choice of Tapsilog, Bangsilog, Longsilog &amp; more — garlic fried rice &amp; egg</div>
+        <div class="dish-price">$14.99</div>
+      </div>
+    </div>
+
+    <div class="dish-card reveal rd3">
+      <div class="dish-photo" style="background-image:url('images/mj-latte.jpg');" role="img" aria-label="MJ's Salted Caramel Latte"></div>
+      <div class="dish-body">
+        <span class="dish-badge">Fan Favorite</span>
+        <div class="dish-name">MJ's Salted Caramel Latte</div>
+        <div class="dish-desc">Sweet, salty &amp; perfectly balanced — MJ's personal signature creation</div>
+        <div class="dish-price">$5.99</div>
+      </div>
+    </div>
+
+    <div class="dish-card reveal rd4">
+      <div class="dish-photo" style="background-image:url('images/avocado-salad.jpg');" role="img" aria-label="Grilled Chicken Avocado Salad"></div>
+      <div class="dish-body">
+        <span class="dish-badge">Best Seller · Lunch</span>
+        <div class="dish-name">Grilled Chicken Avocado Salad</div>
+        <div class="dish-desc">Fresh, hearty &amp; always a crowd pleaser — our best-selling lunch special</div>
+        <div class="dish-price">$12.99</div>
+      </div>
+    </div>
+
+    <div class="dish-card reveal rd5">
+      <div class="dish-photo" style="background-image:url('images/buffalo-wings.jpg');" role="img" aria-label="Hot and Spicy Baked Buffalo Wings"></div>
+      <div class="dish-body">
+        <span class="dish-badge">Customer Favorite</span>
+        <div class="dish-name">Hot &amp; Spicy Baked Buffalo Wings</div>
+        <div class="dish-desc">8 pc baked wings with ranch, potato wedges, homemade dipping sauce &amp; celery sticks</div>
+        <div class="dish-price">$8.99</div>
+      </div>
+    </div>
+
+    <div class="dish-card reveal rd6">
+      <div class="dish-photo" style="background-image:url('images/halo-halo.jpg');" role="img" aria-label="Halo-Halo Filipino Dessert"></div>
+      <div class="dish-body">
+        <span class="dish-badge">Filipino Dessert</span>
+        <div class="dish-name">Halo-Halo</div>
+        <div class="dish-desc">Mixed fruits, sweetened beans, milk &amp; shaved ice — topped with purple yam, leche flan &amp; ice cream</div>
+        <div class="dish-price">$12.99</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ======================== MENU ========================= -->
+<section id="menu" class="sep">
+  <div class="menu-hdr reveal">
+    <span class="section-label" style="margin-bottom:1rem;">What We Serve</span>
+    <h2 class="section-title">Our Menu</h2>
+    <div class="menu-deco" aria-hidden="true">
+      <span class="menu-deco-icon">&#10022;</span>
+    </div>
+  </div>
+
+  <!-- Tabs -->
+  <div class="tabs-bar reveal" id="menu-tabs" role="tablist" aria-label="Menu categories">
+    <button class="m-tab active" data-tab="coffee"     role="tab" aria-selected="true"  aria-controls="tab-coffee">Coffee</button>
+    <button class="m-tab"        data-tab="specialty"  role="tab" aria-selected="false" aria-controls="tab-specialty">Specialty Drinks</button>
+    <button class="m-tab"        data-tab="smoothies"  role="tab" aria-selected="false" aria-controls="tab-smoothies">Smoothies &amp; Shakes</button>
+    <button class="m-tab"        data-tab="silog"      role="tab" aria-selected="false" aria-controls="tab-silog">Filipino Breakfast</button>
+    <button class="m-tab"        data-tab="lunch"      role="tab" aria-selected="false" aria-controls="tab-lunch">Lunch Specials</button>
+    <button class="m-tab"        data-tab="sandwiches" role="tab" aria-selected="false" aria-controls="tab-sandwiches">Sandwiches &amp; Burgers</button>
+    <button class="m-tab"        data-tab="dessert"    role="tab" aria-selected="false" aria-controls="tab-dessert">Desserts &amp; Pastries</button>
+  </div>
+
+  <!-- Panel -->
+  <div class="menu-panel reveal">
+
+    <!-- COFFEE -->
+    <div id="tab-coffee" class="tab-panel active" role="tabpanel" aria-labelledby="tab-coffee">
+      <h3 class="cat-title">Coffee</h3>
+      <div class="m-item">
+        <div class="m-left"><span class="m-name">Pinoy Cappuccino</span></div>
+        <span class="m-dots" aria-hidden="true"></span>
+        <span class="m-price">$5.25</span>
+      </div>
+      <div class="m-item">
+        <div class="m-left">
+          <span class="m-name">Kap&eacute; Filipino</span>
+          <span class="m-desc">Our signature Philippine-style brewed coffee</span>
+        </div>
+        <span class="m-dots" aria-hidden="true"></span>
+        <span class="m-price">$4.99</span>
+      </div>
+      <div class="m-item">
+        <div class="m-left">
+          <span class="m-name">MJ's Salted Caramel Latte</span>
+          <span class="m-desc">MJ's personal favorite — sweet, salty &amp; perfectly balanced</span>
+        </div>
+        <span class="m-dots" aria-hidden="true"></span>
+        <span class="m-price">$5.99</span>
+      </div>
+      <div class="m-item">
+        <div class="m-left"><span class="m-name">Vincent's Vanilla Latte</span></div>
+        <span class="m-dots" aria-hidden="true"></span>
+        <span class="m-price">$5.99</span>
+      </div>
+      <div class="m-item">
+        <div class="m-left"><span class="m-name">Caramel Mocha Latte</span></div>
+        <span class="m-dots" aria-hidden="true"></span>
+        <span class="m-price">$5.99</span>
+      </div>
+      <div class="m-item">
+        <div class="m-left"><span class="m-name">Pumpkin Spice Latte</span></div>
+        <span class="m-dots" aria-hidden="true"></span>
+        <span class="m-price">$5.99</span>
+      </div>
+      <div class="m-item">
+        <div class="m-left"><span class="m-name">Coffee Frapp&eacute;</span></div>
+        <span class="m-dots" aria-hidden="true"></span>
+        <span class="m-price">$7.99</span>
+      </div>
+      <div class="m-item">
+        <div class="m-left"><span class="m-name">Matcha Latte</span></div>
+        <span class="m-dots" aria-hidden="true"></span>
+        <span class="m-price">$6.99</span>
+      </div>
+      <div class="m-item">
+        <div class="m-left">
+          <span class="m-name">Osmena's Ube Coffee Frapp&eacute; <span class="m-tag">New</span></span>
+          <span class="m-desc">Creamy ube blended with coffee — our newest signature</span>
+        </div>
+        <span class="m-dots" aria-hidden="true"></span>
+        <span class="m-price">$7.99</span>
+      </div>
+    </div>
+
+    <!-- SPECIALTY DRINKS -->
+    <div id="tab-specialty" class="tab-panel" role="tabpanel" aria-labelledby="tab-specialty">
+      <h3 class="cat-title">Specialty Drinks</h3>
+      <div class="m-item">
+        <div class="m-left"><span class="m-name">Strawberry Matcha Strato Frapp&eacute;</span></div>
+        <span class="m-dots" aria-hidden="true"></span>
+        <span class="m-price">$7.99</span>
+      </div>
+      <div class="m-item">
+        <div class="m-left"><span class="m-name">Ube Latte</span></div>
+        <span class="m-dots" aria-hidden="true"></span>
+        <span class="m-price">$7.99</span>
+      </div>
+      <div class="m-item">
+        <div class="m-left"><span class="m-name">Mango Matcha</span></div>
+        <span class="m-dots" aria-hidden="true"></span>
+        <span class="m-price">$7.99</span>
+      </div>
+      <div class="m-item">
+        <div class="m-left">
+          <span class="m-name">Calamansi Juice</span>
+          <span class="m-desc">Fresh Philippine calamansi citrus juice</span>
+        </div>
+        <span class="m-dots" aria-hidden="true"></span>
+        <span class="m-price">$5.99</span>
+      </div>
+    </div>
+
+    <!-- SMOOTHIES & SHAKES -->
+    <div id="tab-smoothies" class="tab-panel" role="tabpanel" aria-labelledby="tab-smoothies">
+      <h3 class="cat-title">Smoothies &amp; Shakes</h3>
+      <p class="cat-note">Fresh fruit only — no powder, no sugar added.</p>
+
+      <p class="cat-sub-hdr">Fresh Fruit Smoothies</p>
+      <div class="m-item">
+        <div class="m-left"><span class="m-name">Blueberry Smoothie</span></div>
+        <span class="m-dots" aria-hidden="true"></span>
+        <span class="m-price">$6.99</span>
+      </div>
+      <div class="m-item">
+        <div class="m-left"><span class="m-name">Strawberry Smoothie</span></div>
+        <span class="m-dots" aria-hidden="true"></span>
+        <span class="m-price">$6.99</span>
+      </div>
+      <div class="m-item">
+        <div class="m-left"><span class="m-name">Blueberry Strawberry Smoothie</span></div>
+        <span class="m-dots" aria-hidden="true"></span>
+        <span class="m-price">$6.99</span>
+      </div>
+      <p class="cat-sub-hdr">Tropical Shakes</p>
+      <div class="m-item">
+        <div class="m-left"><span class="m-name">Mango Shake</span></div>
+        <span class="m-dots" aria-hidden="true"></span>
+        <span class="m-price">$7.99</span>
+      </div>
+      <div class="m-item">
+        <div class="m-left"><span class="m-name">Buko Shake</span></div>
+        <span class="m-dots" aria-hidden="true"></span>
+        <span class="m-price">$7.99</span>
+      </div>
+      <div class="m-item">
+        <div class="m-left"><span class="m-name">Avocado Shake</span></div>
+        <span class="m-dots" aria-hidden="true"></span>
+        <span class="m-price">$8.50</span>
+      </div>
+    </div>
+
+    <!-- FILIPINO BREAKFAST -->
+    <div id="tab-silog" class="tab-panel" role="tabpanel" aria-labelledby="tab-silog">
+      <h3 class="cat-title">Filipino Breakfast</h3>
+      <p class="cat-note">All silog plates served with garlic fried rice &amp; egg.</p>
+      <div class="m-item">
+        <div class="m-left">
+          <span class="m-name">Longsilog</span>
+          <span class="m-desc">Sweet pork longanisa sausage</span>
+        </div>
+        <span class="m-dots" aria-hidden="true"></span>
+        <span class="m-price">$14.99</span>
+      </div>
+      <div class="m-item">
+        <div class="m-left">
+          <span class="m-name">Tapsilog</span>
+          <span class="m-desc">Marinated beef tapa</span>
+        </div>
+        <span class="m-dots" aria-hidden="true"></span>
+        <span class="m-price">$14.99</span>
+      </div>
+      <div class="m-item">
+        <div class="m-left">
+          <span class="m-name">Cornsilog</span>
+          <span class="m-desc">Corned beef and garlic fried rice</span>
+        </div>
+        <span class="m-dots" aria-hidden="true"></span>
+        <span class="m-price">$14.99</span>
+      </div>
+      <div class="m-item">
+        <div class="m-left">
+          <span class="m-name">Bangsilog</span>
+          <span class="m-desc">Crispy milkfish (bangus)</span>
+        </div>
+        <span class="m-dots" aria-hidden="true"></span>
+        <span class="m-price">$14.99</span>
+      </div>
+      <div class="m-item">
+        <div class="m-left">
+          <span class="m-name">Tocilog</span>
+          <span class="m-desc">Sweet cured pork tocino</span>
+        </div>
+        <span class="m-dots" aria-hidden="true"></span>
+        <span class="m-price">$14.99</span>
+      </div>
+    </div>
+
+    <!-- LUNCH SPECIALS -->
+    <div id="tab-lunch" class="tab-panel" role="tabpanel" aria-labelledby="tab-lunch">
+      <h3 class="cat-title">Lunch Specials</h3>
+      <div class="m-item">
+        <div class="m-left">
+          <span class="m-name">Grilled Chicken Avocado Salad <span class="m-tag">Best Seller</span></span>
+        </div>
+        <span class="m-dots" aria-hidden="true"></span>
+        <span class="m-price">$12.99</span>
+      </div>
+      <div class="m-item">
+        <div class="m-left"><span class="m-name">Chicken Alfredo Pasta</span></div>
+        <span class="m-dots" aria-hidden="true"></span>
+        <span class="m-price">$11.99</span>
+      </div>
+      <div class="m-item">
+        <div class="m-left"><span class="m-name">Stir-Fried Noodles &amp; Egg Rolls</span></div>
+        <span class="m-dots" aria-hidden="true"></span>
+        <span class="m-price">$10.99</span>
+      </div>
+      <div class="m-item">
+        <div class="m-left">
+          <span class="m-name">Oven-Baked Pork Ribs</span>
+          <span class="m-desc">2 cuts of spare ribs with a side — choice of Brussels sprouts or asparagus</span>
+        </div>
+        <span class="m-dots" aria-hidden="true"></span>
+        <span class="m-price">$7.99</span>
+      </div>
+      <div class="m-item">
+        <div class="m-left">
+          <span class="m-name">Avocado Toast</span>
+          <span class="m-desc">Sliced or mashed fresh avocado on ciabatta, wheat or white toast, sunny side-up or scrambled eggs &amp; tomatoes</span>
+        </div>
+        <span class="m-dots" aria-hidden="true"></span>
+        <span class="m-price">$6.99</span>
+      </div>
+      <div class="m-item">
+        <div class="m-left">
+          <span class="m-name">Spaghetti w/ Toast Bread</span>
+          <span class="m-desc">Filipino-style spaghetti served with toast bread</span>
+        </div>
+        <span class="m-dots" aria-hidden="true"></span>
+        <span class="m-price">$6.99</span>
+      </div>
+      <div class="m-item">
+        <div class="m-left"><span class="m-name">Egg &amp; Sausage Tacos</span></div>
+        <span class="m-dots" aria-hidden="true"></span>
+        <span class="m-price">$6.99 each</span>
+      </div>
+      <div class="m-item">
+        <div class="m-left"><span class="m-name">Beef Tacos</span></div>
+        <span class="m-dots" aria-hidden="true"></span>
+        <span class="m-price">3 for $12.99</span>
+      </div>
+      <div class="m-item">
+        <div class="m-left">
+          <span class="m-name">Egg McMuffin</span>
+          <span class="m-desc">English muffin, egg, cheese and choice of bacon or ham</span>
+        </div>
+        <span class="m-dots" aria-hidden="true"></span>
+        <span class="m-price">$4.99</span>
+      </div>
+      <div class="m-item">
+        <div class="m-left">
+          <span class="m-name">Shrimp Fried Rice</span>
+          <span class="m-desc">Rice, shrimp, carrots, green peas, sliced scrambled eggs &amp; spring onions</span>
+        </div>
+        <span class="m-dots" aria-hidden="true"></span>
+        <span class="m-price">$3.99</span>
+      </div>
+      <div class="m-item">
+        <div class="m-left"><span class="m-name">French Fries</span></div>
+        <span class="m-dots" aria-hidden="true"></span>
+        <span class="m-price">$4.25</span>
+      </div>
+    </div>
+
+    <!-- SANDWICHES & BURGERS -->
+    <div id="tab-sandwiches" class="tab-panel" role="tabpanel" aria-labelledby="tab-sandwiches">
+      <h3 class="cat-title">Sandwiches &amp; Burgers</h3>
+      <p class="cat-note">All sandwiches &amp; burgers served with regular fries.</p>
+      <div class="m-item">
+        <div class="m-left">
+          <span class="m-name">BLT Sandwich</span>
+          <span class="m-desc">Bacon, lettuce, tomato &amp; mayo on toasted bread — add avocado &amp; pepper jack for a twist</span>
+        </div>
+        <span class="m-dots" aria-hidden="true"></span>
+        <span class="m-price">$8.99</span>
+      </div>
+      <div class="m-item">
+        <div class="m-left">
+          <span class="m-name">Grilled Chicken Sandwich</span>
+          <span class="m-desc">Avocado, lettuce, tomato &amp; garlic mayo</span>
+        </div>
+        <span class="m-dots" aria-hidden="true"></span>
+        <span class="m-price">$8.99</span>
+      </div>
+      <div class="m-item">
+        <div class="m-left">
+          <span class="m-name">Smoked Turkey Sandwich <span class="m-tag">Customer's Fave</span></span>
+          <span class="m-desc">Smoked turkey with lettuce, tomato &amp; honey mustard</span>
+        </div>
+        <span class="m-dots" aria-hidden="true"></span>
+        <span class="m-price">$8.99</span>
+      </div>
+      <div class="m-item">
+        <div class="m-left">
+          <span class="m-name">Tuna Sandwich</span>
+        </div>
+        <span class="m-dots" aria-hidden="true"></span>
+        <span class="m-price">$8.99</span>
+      </div>
+      <div class="m-item">
+        <div class="m-left">
+          <span class="m-name">Cheeseburger</span>
+          <span class="m-desc">With lettuce, tomato &amp; fries</span>
+        </div>
+        <span class="m-dots" aria-hidden="true"></span>
+        <span class="m-price">$7.99</span>
+      </div>
+      <div class="m-item">
+        <div class="m-left">
+          <span class="m-name">Hot &amp; Spicy Baked Buffalo Wings (8 pc)</span>
+          <span class="m-desc">Baked wings with ranch dressing, potato wedges, homemade dipping sauce &amp; celery sticks</span>
+        </div>
+        <span class="m-dots" aria-hidden="true"></span>
+        <span class="m-price">$8.99</span>
+      </div>
+    </div>
+
+    <!-- DESSERTS & PASTRIES -->
+    <div id="tab-dessert" class="tab-panel" role="tabpanel" aria-labelledby="tab-dessert">
+      <h3 class="cat-title">Desserts &amp; Pastries</h3>
+      <p class="cat-sub-hdr">Desserts</p>
+      <div class="m-item">
+        <div class="m-left">
+          <span class="m-name">Halo-Halo</span>
+          <span class="m-desc">Mixed fruits, boiled sweetened white beans, milk &amp; shaved ice, topped with purple yam, crème caramel &amp; ice cream</span>
+        </div>
+        <span class="m-dots" aria-hidden="true"></span>
+        <span class="m-price">$12.99</span>
+      </div>
+      <div class="m-item">
+        <div class="m-left">
+          <span class="m-name">UBE Banana Pancake</span>
+          <span class="m-desc">A unique twist on the classic pancake blended with the delectable taste of purple yam and banana</span>
+        </div>
+        <span class="m-dots" aria-hidden="true"></span>
+        <span class="m-ask">Ask us</span>
+      </div>
+      <p class="cat-sub-hdr">Pastries</p>
+      <div class="m-item">
+        <div class="m-left"><span class="m-name">Mango Cheesecake</span></div>
+        <span class="m-dots" aria-hidden="true"></span>
+        <span class="m-price">$5.99</span>
+      </div>
+      <div class="m-item">
+        <div class="m-left">
+          <span class="m-name">Crema de Fruta</span>
+          <span class="m-desc">Classic Filipino layered dessert with sponge cake, custard cream &amp; tropical fruit</span>
+        </div>
+        <span class="m-dots" aria-hidden="true"></span>
+        <span class="m-price">$5.99</span>
+      </div>
+    </div>
+
+  </div><!-- /menu-panel -->
+  <p class="menu-note">Menu items and prices may vary. Call us at (713) 701-2826 to confirm current offerings.</p>
+</section>
+
+<!-- ===================== ORDER STRIP ===================== -->
+<div class="order-strip">
+  <h2 class="order-title">Order Online via DoorDash</h2>
+  <p class="order-sub">Craving Kâpé Tayo? Order for pickup or delivery from our Energy District location.</p>
+  <a href="https://www.doordash.com/store/kape-tayo-cafe-energy-district-usa---12012-wickchester-ln-houston-34727841/"
+     target="_blank" rel="noopener noreferrer" class="btn-dark">
+    Order on DoorDash
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+  </a>
+</div>
+
+<!-- =================== HOURS & LOCATION =================== -->
+<section id="hours" class="sep">
+  <div class="hours-hdr reveal">
+    <span class="section-label" style="margin-bottom:1rem;">Come Visit Us</span>
+    <h2 class="section-title">Hours &amp; Location</h2>
+  </div>
+
+  <div class="hours-grid">
+
+    <!-- Hours card -->
+    <div class="info-card reveal rd1">
+      <div class="card-hdr">
+        <div class="card-icon" aria-hidden="true">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#CC8030" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+        </div>
+        <h3 class="card-title">
+          Hours of Operation
+          <span class="open-badge" id="open-badge" aria-live="polite">
+            <span class="badge-dot"></span>
+            <span id="open-text">Checking...</span>
+          </span>
+        </h3>
+      </div>
+
+      <div class="hr-row"><span class="hr-day">Monday</span><span class="hr-time">9:30 AM – 3:00 PM</span></div>
+      <div class="hr-row"><span class="hr-day">Tuesday</span><span class="hr-time">9:30 AM – 3:00 PM</span></div>
+      <div class="hr-row"><span class="hr-day">Wednesday</span><span class="hr-time">9:30 AM – 3:00 PM</span></div>
+      <div class="hr-row"><span class="hr-day">Thursday</span><span class="hr-time">9:30 AM – 3:00 PM</span></div>
+      <div class="hr-row"><span class="hr-day">Friday</span><span class="hr-time">9:30 AM – 3:00 PM</span></div>
+      <div class="hr-row"><span class="hr-day">Saturday</span><span class="hr-time">9:30 AM – 3:00 PM</span></div>
+      <div class="hr-row">
+        <span class="hr-day closed-txt">Sunday</span>
+        <span class="hr-time closed-txt">Closed</span>
+      </div>
+    </div>
+
+    <!-- Location card -->
+    <div class="info-card reveal rd2">
+      <div class="card-hdr">
+        <div class="card-icon" aria-hidden="true">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#CC8030" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        </div>
+        <h3 class="card-title">Find Us</h3>
+      </div>
+
+      <p style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:500;color:var(--crm);line-height:1.65;margin-bottom:0.35rem;">
+        12012 Wickchester Ln, Suite 110<br>Houston, TX 77079
+      </p>
+      <p style="font-size:0.75rem;color:var(--crm-40);margin-bottom:1.75rem;font-weight:300;">Energy District, Houston</p>
+
+      <div style="display:flex;flex-direction:column;gap:0.2rem;margin-bottom:0.5rem;">
+        <a href="tel:7137012826" class="c-link">
+          <div class="c-icon" aria-hidden="true">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#CC8030" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.62 3.4 2 2 0 0 1 3.6 1.21h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.78a16 16 0 0 0 6 6l.97-.97a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.79 17z"/></svg>
+          </div>
+          (713) 701-2826
+        </a>
+        <a href="mailto:kapetayohouston@gmail.com" class="c-link">
+          <div class="c-icon" aria-hidden="true">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#CC8030" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </div>
+          kapetayohouston@gmail.com
+        </a>
+        <a href="https://www.instagram.com/thecozytablehouston/" target="_blank" rel="noopener noreferrer" class="c-link">
+          <div class="c-icon" aria-hidden="true">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#CC8030" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </div>
+          @thecozytablehouston
+        </a>
+      </div>
+
+      <a href="https://maps.google.com/?q=12012+Wickchester+Ln+110+Houston+TX+77079"
+         target="_blank" rel="noopener noreferrer" class="btn-block">
+        Get Directions
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<!-- ======================== SOCIAL ======================== -->
+<section id="social" class="sep">
+  <span class="section-label reveal" style="display:block;text-align:center;margin-bottom:1rem;">Stay Connected</span>
+  <h2 class="section-title reveal" style="text-align:center;font-size:clamp(2rem,5vw,3.2rem);">Follow Our Journey</h2>
+  <p class="reveal" style="color:rgba(245,234,208,0.42);font-size:0.88rem;font-weight:300;max-width:400px;margin:1rem auto 0;text-align:center;line-height:1.85;">
+    Daily specials, behind-the-scenes, Filipino food culture — all on our Instagram.
+  </p>
+  <div style="display:flex;justify-content:center;" class="reveal">
+    <a href="https://www.instagram.com/thecozytablehouston/" target="_blank" rel="noopener noreferrer" class="ig-link">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+      @thecozytablehouston
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+    </a>
+  </div>
+</section>
+
+<!-- ======================== FOOTER ======================== -->
+<footer id="contact">
+  <div class="foot-inner">
+    <div class="foot-grid">
+      <div>
+        <div class="foot-brand">The Cozy Table</div>
+        <span class="foot-sub">by Kâpé Tayo</span>
+        <p class="foot-tagline">Houston's first Filipino coffee shop. Authentic Philippine coffee &amp; Filipino Asian American cuisine in the Energy District.</p>
+      </div>
+      <div>
+        <span class="foot-col-lbl">Quick Links</span>
+        <div class="foot-links">
+          <a href="#about"  class="foot-link">About Us</a>
+          <a href="#menu"   class="foot-link">Menu</a>
+          <a href="#hours"  class="foot-link">Hours &amp; Location</a>
+          <a href="#social" class="foot-link">Instagram</a>
+        </div>
+      </div>
+      <div>
+        <span class="foot-col-lbl">Contact</span>
+        <div class="foot-links">
+          <a href="tel:7137012826" class="foot-link">(713) 701-2826</a>
+          <a href="mailto:kapetayohouston@gmail.com" class="foot-link">kapetayohouston@gmail.com</a>
+          <a href="https://www.instagram.com/thecozytablehouston/" target="_blank" rel="noopener noreferrer" class="foot-link">@thecozytablehouston</a>
+          <a href="https://www.doordash.com/store/kape-tayo-cafe-energy-district-usa---12012-wickchester-ln-houston-34727841/" target="_blank" rel="noopener noreferrer" class="foot-link">Order on DoorDash</a>
+        </div>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <p class="foot-copy">&copy; 2025 The Cozy Table by K&acirc;p&eacute; Tayo &middot; Houston, TX</p>
+      <p class="foot-copy" style="font-style:italic;">Houston's First Filipino Coffee Shop</p>
+    </div>
+  </div>
+</footer>
+
+<!-- ======================== SCRIPTS ======================== -->
+<script>
+  /* --- Marquee --- */
+  (function() {
+    const items = [
+      'Houston\'s First Filipino Coffee Shop',
+      'Authentic Philippine Coffee',
+      'Filipino Asian American Cuisine',
+      'Energy District, Houston TX',
+      'Open Mon–Sat · 9:30 AM – 3:00 PM',
+      'Order via DoorDash',
+    ];
+    const track = document.getElementById('marquee-track');
+    const buildSet = () => items.map(text =>
+      `<span class="marquee-item">${text}<span class="marquee-sep" aria-hidden="true"></span></span>`
+    ).join('');
+    track.innerHTML = buildSet() + buildSet();
+  })();
+
+  /* --- Nav scroll --- */
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 60);
+  }, { passive: true });
+
+  /* --- Mobile overlay --- */
+  const hamburger = document.getElementById('hamburger');
+  const mobOverlay = document.getElementById('mob-overlay');
+  hamburger.addEventListener('click', () => {
+    const open = mobOverlay.classList.toggle('open');
+    hamburger.classList.toggle('open', open);
+    hamburger.setAttribute('aria-expanded', String(open));
+    document.body.style.overflow = open ? 'hidden' : '';
+  });
+  mobOverlay.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      mobOverlay.classList.remove('open');
+      hamburger.classList.remove('open');
+      hamburger.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    });
+  });
+
+  /* --- Menu tabs --- */
+  const tabs = document.querySelectorAll('.m-tab');
+  const panels = document.querySelectorAll('.tab-panel');
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      tabs.forEach(t => { t.classList.remove('active'); t.setAttribute('aria-selected','false'); });
+      panels.forEach(p => p.classList.remove('active'));
+      tab.classList.add('active');
+      tab.setAttribute('aria-selected','true');
+      document.getElementById('tab-' + tab.dataset.tab).classList.add('active');
+    });
+  });
+
+  /* --- Scroll reveal --- */
+  const ro = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('vis'); ro.unobserve(e.target); }
+    });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
+
+  /* --- Open/Closed badge --- */
+  (function() {
+    const badge = document.getElementById('open-badge');
+    const txt   = document.getElementById('open-text');
+    if (!badge || !txt) return;
+    const now  = new Date();
+    const ct   = new Date(now.toLocaleString('en-US', { timeZone: 'America/Chicago' }));
+    const day  = ct.getDay();           // 0=Sun,1=Mon,...6=Sat
+    const mins = ct.getHours()*60 + ct.getMinutes();
+    const open = day >= 1 && day <= 6 && mins >= 570 && mins < 900;
+    badge.classList.add(open ? 'is-open' : 'is-closed');
+    txt.textContent = open ? 'Open Now' : 'Closed';
+  })();
+</script>
+</body>
+</html>
