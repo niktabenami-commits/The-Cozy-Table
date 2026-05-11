@@ -1,8 +1,6 @@
 node_modules_temp/
 temporary screenshots/
 .claude/
-_project-memory/
 *.code-workspace
 screenshot.mjs
 serve.mjs
-CLAUDE.md
