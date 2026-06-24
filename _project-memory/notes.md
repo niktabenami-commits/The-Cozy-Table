@@ -3,7 +3,8 @@
 ## What This Site Is
 - Restaurant website for Houston's first Filipino coffee shop
 - Single `index.html`, all styles inline, Tailwind CDN
-- Dark espresso aesthetic — Cormorant Garamond (display) + Jost (body)
+- **Dark matcha green aesthetic** — Cormorant Garamond (display) + Jost (body)
+- Color scheme changed from brown/espresso to matcha green + gold + cream (May 2026)
 - **Image prices always override pasted text prices. Ask user before applying any conflict.**
 
 ## Business Info
@@ -45,8 +46,22 @@ Halo-Halo $12.99 · UBE Banana Pancake (ask) · Crema de Fruta $5.99 · Mango Ch
 Images go in `images/` folder — currently show gradient fallback until photos are added:
 `ube-frappe.jpg` · `silog-plate.jpg` · `mj-latte.jpg` · `avocado-salad.jpg` · `buffalo-wings.jpg` · `halo-halo.jpg`
 
+## Color Palette (current — Matcha Green + Gold + Cream)
+```
+--esp:    #0C1A0D   darkest bg
+--esp-md: #111F12   medium bg
+--esp-lt: #182E1A   lighter surface (dishes section)
+--amb:    #CC8030   gold accent (primary)
+--amb-lt: #DFA058   gold light
+--amb-dk: #A86020   gold dark
+--crm:    #F5EAD0   cream text
+footer:   #070F08   near-black green
+```
+Inline rgba channels: bg `rgba(12,26,13,x)` · mid `rgba(17,31,18,x)` · lt `rgba(24,46,26,x)` · gold `rgba(204,128,48,x)` · cream `rgba(245,234,208,x)`
+
 ## Tech Notes
 - IntersectionObserver scroll-reveal (`.reveal` → `.vis`)
 - Live Open/Closed badge uses `America/Chicago` timezone
 - Mobile-first; tabs scroll horizontally on small screens
 - Server: `node serve.mjs` (port 3000) · Screenshots: `node screenshot.mjs http://localhost:3000`
+- Puppeteer: `./node_modules_temp/node_modules/puppeteer`

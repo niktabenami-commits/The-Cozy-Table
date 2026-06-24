@@ -8,9 +8,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600&family=Jost:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --esp:    #160C07;
-      --esp-md: #1E1008;
-      --esp-lt: #2A1208;
+      --esp:    #0C1A0D;
+      --esp-md: #111F12;
+      --esp-lt: #182E1A;
       --amb:    #CC8030;
       --amb-lt: #DFA058;
       --amb-dk: #A86020;
@@ -69,7 +69,7 @@
       transition: background 0.4s ease, box-shadow 0.4s ease;
     }
     #navbar.scrolled {
-      background: rgba(22,12,7,0.96);
+      background: rgba(12,26,13,0.96);
       backdrop-filter: blur(24px);
       -webkit-backdrop-filter: blur(24px);
       box-shadow: 0 1px 0 rgba(204,128,48,0.14), 0 12px 40px rgba(0,0,0,0.45);
@@ -145,7 +145,7 @@
     /* Mobile overlay */
     #mob-overlay {
       position: fixed; inset: 0; z-index: 199;
-      background: rgba(22,12,7,0.98);
+      background: rgba(12,26,13,0.98);
       backdrop-filter: blur(28px);
       display: flex; flex-direction: column;
       justify-content: center; align-items: center; gap: 2.5rem;
@@ -177,7 +177,7 @@
       background:
         radial-gradient(ellipse 85% 65% at 12% 32%, rgba(204,128,48,0.12) 0%, transparent 55%),
         radial-gradient(ellipse 65% 85% at 88% 70%, rgba(168,76,40,0.09) 0%, transparent 55%),
-        radial-gradient(ellipse 70% 55% at 50% 115%, rgba(42,18,8,0.98) 0%, transparent 60%);
+        radial-gradient(ellipse 70% 55% at 50% 115%, rgba(24,46,26,0.98) 0%, transparent 60%);
     }
     .hero-noise-layer {
       position: absolute; inset: 0; pointer-events: none;
@@ -287,7 +287,7 @@
       letter-spacing: 0.22em; text-transform: uppercase;
       color: var(--esp); white-space: nowrap; padding: 0 2.5rem;
     }
-    .marquee-sep { width: 4px; height: 4px; border-radius: 50%; background: rgba(22,12,7,0.4); flex-shrink: 0; }
+    .marquee-sep { width: 4px; height: 4px; border-radius: 50%; background: rgba(12,26,13,0.4); flex-shrink: 0; }
     @keyframes marqueeScroll {
       0% { transform: translateX(0); }
       100% { transform: translateX(-50%); }
@@ -330,7 +330,7 @@
       display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem;
     }
     .stat-card {
-      background: rgba(26,14,7,0.65);
+      background: rgba(14,28,15,0.65);
       border: 1px solid rgba(204,128,48,0.1);
       border-radius: 12px; padding: 1.6rem;
       transition: border-color 0.3s ease, transform 0.3s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.3s ease;
@@ -371,7 +371,7 @@
     }
     .feat-card {
       position: relative; overflow: hidden;
-      background: rgba(22,14,8,0.8);
+      background: rgba(12,24,13,0.8);
       border: 1px solid rgba(204,128,48,0.1);
       border-radius: 14px; padding: 2.75rem 2.25rem;
       transition: border-color 0.3s ease, transform 0.35s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.35s ease;
@@ -451,7 +451,7 @@
     /* Panel */
     .menu-panel {
       max-width: 780px; margin: 0 auto;
-      background: rgba(22,12,7,0.72);
+      background: rgba(12,26,13,0.72);
       border: 1px solid rgba(204,128,48,0.11);
       border-radius: 16px; padding: 3rem;
       backdrop-filter: blur(12px);
@@ -520,7 +520,7 @@
       margin-bottom: 0.75rem; position: relative; z-index: 1;
     }
     .order-sub {
-      font-size: 0.86rem; color: rgba(22,12,7,0.6);
+      font-size: 0.86rem; color: rgba(12,26,13,0.6);
       margin-bottom: 2.5rem; position: relative; z-index: 1; letter-spacing: 0.02em;
     }
     .btn-dark {
@@ -548,7 +548,7 @@
       display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;
     }
     .info-card {
-      background: rgba(22,12,7,0.72);
+      background: rgba(12,26,13,0.72);
       border: 1px solid rgba(204,128,48,0.11);
       border-radius: 16px; padding: 2.75rem;
       transition: border-color 0.3s ease, transform 0.3s ease;
@@ -636,7 +636,7 @@
 
     /* ── FOOTER ── */
     footer {
-      background: #0D0804;
+      background: #070F08;
       border-top: 1px solid rgba(204,128,48,0.1);
       padding: 5.5rem 2rem 3rem;
     }
@@ -702,7 +702,7 @@
     .dish-photo {
       width: 100%; height: 210px;
       background-size: cover; background-position: center;
-      background-color: #2A1208; position: relative;
+      background-color: #182E1A; position: relative;
     }
     .dish-photo::before {
       content: ''; position: absolute; inset: 0;
@@ -711,7 +711,7 @@
     .dish-photo::after {
       content: ''; position: absolute;
       bottom: 0; left: 0; right: 0; height: 55%;
-      background: linear-gradient(to top, rgba(22,12,7,0.9), transparent);
+      background: linear-gradient(to top, rgba(12,26,13,0.9), transparent);
     }
     .dish-body {
       padding: 1.2rem 1.4rem 1.45rem;
